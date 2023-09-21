@@ -1,0 +1,6 @@
+server:
+  port: 8081
+
+dynamodb:
+  accessKey: "AKIAVYRBLT5VZW37UKHP"
+  secretKey: "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"
