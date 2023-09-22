@@ -1,0 +1,7 @@
+services:
+  my-app:
+    container_name: spring-boot-dynamodb
+    image: spring-boot-dynamodb-demo:latest
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
