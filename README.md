@@ -1,5 +1,7 @@
 # Java Spring Boot + AWS DynamoDB + Terraform
 
+![banner](misc/banner.svg)
+
 This example demonstrates a working backend application built in Java Spring Boot 3+
 and uses a NOSQL AWS DynamoDB database, provisioned by Terraform.
 
@@ -26,6 +28,12 @@ Create and configure DynamoDB:
 cd ./terraform
 terraform init
 terraform apply --auto-approve
+```
+
+- **Note:** don't forget to destroy everything when you're done testing:
+
+```shell
+terraform destroy --auto-approve
 ```
 
 # 2. Run the backend application
@@ -149,5 +157,7 @@ Try to access the same (localhost) API, such as:
 ```
 
 # 3. Testing the CRUD API
+
+![API](misc/api.png)
 
 Import the [dynamodb.postman_collection.json](postman/dynamodb.postman_collection.json) file into the Postman.
