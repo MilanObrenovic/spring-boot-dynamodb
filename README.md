@@ -1,4 +1,4 @@
-# Java Spring Boot + AWS DynamoDB + Terraform
+# Java Spring Boot + AWS DynamoDB
 
 ![banner](misc/banner.svg)
 
@@ -160,4 +160,5 @@ Try to access the same (localhost) API, such as:
 
 ![API](misc/api.png)
 
-Import the [dynamodb.postman_collection.json](postman/dynamodb.postman_collection.json) file into the Postman.
+Import the [spring-boot-dynamodb.postman_collection.json](postman/spring-boot-dynamodb.postman_collection.json) file
+into the Postman.
