@@ -11,7 +11,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class PersonConfig {
+public class DynamoDBConfig {
+
+    @Value("${dynamodb.endpoint}")
+    private String dynamodbEndpoint;
+
+    @Value("${dynamodb.region}")
+    private String dynamodbRegion;
 
     @Value("${dynamodb.accessKey}")
     private String iamDynamodbAccessKey;
@@ -26,8 +32,8 @@ public class PersonConfig {
 
     private AmazonDynamoDB buildAmazonDynamoDB() {
         AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(
-                "dynamodb.eu-central-1.amazonaws.com",
-                "eu-central-1"
+                dynamodbEndpoint,
+                dynamodbRegion
         );
 
         BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(

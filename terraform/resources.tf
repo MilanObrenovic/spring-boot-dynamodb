@@ -1,13 +1,13 @@
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
-resource "aws_dynamodb_table" "notes" {
-	name           = "notes"
+resource "aws_dynamodb_table" "note" {
+	name           = "note"
 	billing_mode   = "PROVISIONED"
 	read_capacity  = 30
 	write_capacity = 30
-	hash_key       = "note_id"
+	hash_key       = "id"
 
 	attribute {
-		name = "note_id"
+		name = "id"
 		type = "S"
 	}
 
