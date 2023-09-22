@@ -16,15 +16,15 @@ terraform init
 terraform apply --auto-approve
 ```
 
-## 1.2. Run the backend application
+# 2. Run the backend application
 
 There are several ways to run it.
 
-### 1.2.1. Manual
+## 2.1. Manual
 
 Open the project manually via IntelliJ and run it.
 
-### 1.2.2. Docker
+## 2.2. Docker
 
 First of all, generate a JAR file from the current backend:
 
@@ -50,9 +50,9 @@ Run the Docker Container from that image:
 docker run --rm -d -p 8081:8081 --name spring-boot-dynamodb spring-boot-dynamodb-demo
 ```
 
-### 1.2.3. JIB
+## 2.3. JIB
 
-Generate a JAR file of the backend and build a docker image around it using the JIB plugin:
+Generate a JAR file of the backend and build a Docker image around it using the JIB plugin:
 
 ```shell
 ./gradlew clean build jibDockerBuild
@@ -64,7 +64,7 @@ Run the container from the generated image:
 docker run --rm -d -p 8081:8081 --name spring-boot-dynamodb spring-boot-dynamodb-demo
 ```
 
-### 1.2.3. Docker Compose
+## 2.4. Docker Compose
 
 Run the backend via Docker Compose:
 
