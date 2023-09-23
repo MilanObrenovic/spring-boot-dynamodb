@@ -3,7 +3,7 @@
 ![banner](misc/banner.svg)
 
 This example demonstrates a working backend application built in Java Spring Boot 3+
-and uses a NOSQL AWS DynamoDB database, provisioned by Terraform.
+and uses a NoSQL AWS DynamoDB database, provisioned by Terraform.
 
 The focus of this example is integration and manipulation with DynamoDB.
 
@@ -14,15 +14,16 @@ The focus of this example is integration and manipulation with DynamoDB.
 - Docker Compose: **v2.21.0-desktop.1**
 - Kubernetes minikube: **v1.31.2**
 - Kubernetes kubectl: **v1.28.2**
-- Terraform: **v1.5.7**
+- HashiCorp Terraform: **v1.5.7**
+- HashiCorp Vault: **v1.14.3**
 
 # 1. Getting Started
 
 This guide will explain everything you need to do to run this backend demo.
 
-## 1.1. Create DynamoDB via Terraform
+## 1.1. Create DynamoDB and IAM User via Terraform
 
-Create and configure DynamoDB:
+Create an IAM user and DynamoDB through Terraform:
 
 ```shell
 cd ./terraform
@@ -34,6 +35,35 @@ terraform apply --auto-approve
 
 ```shell
 terraform destroy --auto-approve
+```
+
+Output the access key and secret key of the created IAM user:
+
+```shell
+terraform output access_key
+terraform output secret_key
+```
+
+Make sure to update the profile locally:
+
+```shell
+aws configure set aws_access_key_id <ACCESS_KEY>
+aws configure set aws_secret_access_key <SECRET_KEY>
+```
+
+## 1.2. Start Vault Server
+
+Simply execute the bash script to start the Vault service:
+
+```shell
+cd vault/
+./main.sh
+```
+
+Verify that access key and secret key have been added in:
+
+```shell
+http://localhost:8200/ui/vault/secrets/secret/show/dynamodb
 ```
 
 # 2. Run the backend application
@@ -89,7 +119,7 @@ docker run --rm -d -p 8081:8081 --name spring-boot-dynamodb spring-boot-dynamodb
 Run the backend via Docker Compose:
 
 ```shell
-docker compose -up -d
+docker compose up -d
 ```
 
 ## 2.5. Kubernetes

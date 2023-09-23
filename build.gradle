@@ -22,12 +22,33 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    set("springCloudVersion", "2022.0.3")
+}
+
 dependencies {
+    // Implementations
     implementation "org.springframework.boot:spring-boot-starter-web:3.1.4"
+    implementation "org.springframework.cloud:spring-cloud-starter-vault-config:4.0.1"
     implementation "com.amazonaws:aws-java-sdk-dynamodb:1.12.554"
+
+    // Compile only
     compileOnly "org.projectlombok:lombok:1.18.26"
+
+    // Development only
+    developmentOnly "org.springframework.boot:spring-boot-devtools:3.1.4"
+
+    // Annotation processors
     annotationProcessor "org.projectlombok:lombok:1.18.26"
+
+    // Test implementations
     testImplementation "org.springframework.boot:spring-boot-starter-test:3.1.4"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 jib {

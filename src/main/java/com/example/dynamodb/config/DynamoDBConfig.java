@@ -6,11 +6,14 @@ import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@AllArgsConstructor
 public class DynamoDBConfig {
 
     @Value("${dynamodb.endpoint}")
@@ -19,11 +22,12 @@ public class DynamoDBConfig {
     @Value("${dynamodb.region}")
     private String dynamodbRegion;
 
-    @Value("${dynamodb.accessKey}")
-    private String iamDynamodbAccessKey;
+    private VaultConfig vaultConfig;
 
-    @Value("${dynamodb.secretKey}")
-    private String iamDynamodbSecretKey;
+    @Autowired
+    public DynamoDBConfig(VaultConfig vaultConfig) {
+        this.vaultConfig = vaultConfig;
+    }
 
     @Bean
     public DynamoDBMapper dynamoDBMapper() {
@@ -37,8 +41,8 @@ public class DynamoDBConfig {
         );
 
         BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(
-                iamDynamodbAccessKey,
-                iamDynamodbSecretKey
+                vaultConfig.getAccessKey(),
+                vaultConfig.getSecretKey()
         );
 
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(
