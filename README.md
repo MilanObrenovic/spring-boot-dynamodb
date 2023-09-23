@@ -23,7 +23,8 @@ This guide will explain everything you need to do to run this backend demo.
 
 ## 1.1. Create DynamoDB and IAM User via Terraform
 
-Create an IAM user and DynamoDB through Terraform:
+Change the profile in [providers.tf](terraform/providers.tf) to the existing IAM user that you have on your AWS account,
+then initialize and apply changes of the Terraform files:
 
 ```shell
 cd ./terraform
@@ -35,20 +36,6 @@ terraform apply --auto-approve
 
 ```shell
 terraform destroy --auto-approve
-```
-
-Output the access key and secret key of the created IAM user:
-
-```shell
-terraform output access_key
-terraform output secret_key
-```
-
-Make sure to update the profile locally:
-
-```shell
-aws configure set aws_access_key_id <ACCESS_KEY>
-aws configure set aws_secret_access_key <SECRET_KEY>
 ```
 
 ## 1.2. Start Vault Server

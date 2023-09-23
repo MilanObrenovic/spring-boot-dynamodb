@@ -1,5 +1,5 @@
 provider "aws" {
 	region                   = "eu-central-1"
-	profile                  = "dynamodb"
+	profile                  = "terraform"
 	shared_credentials_files = ["$HOME/.aws/credentials"]
 }
