@@ -38,21 +38,6 @@ terraform apply --auto-approve
 terraform destroy --auto-approve
 ```
 
-## 1.2. Start Vault Server
-
-Simply execute the bash script to start the Vault service:
-
-```shell
-cd vault/
-./main.sh
-```
-
-Verify that access key and secret key have been added in:
-
-```shell
-http://localhost:8200/ui/vault/secrets/secret/show/dynamodb
-```
-
 # 2. Run the backend application
 
 There are several ways to run it.
